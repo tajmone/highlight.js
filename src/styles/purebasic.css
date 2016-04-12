@@ -9,7 +9,7 @@ Public Domain
 	This CSS file diverge from the official one contained in highlight.js package.
 	This file as been optimized to highilight PureBASIC syntax ONLY!!
 	It also include the "function_call" class, to catch Procedure calls — as is customary
-	with PureBASIC IDE syntax coloring — which didn't make it into the offical package.
+	with PureBASIC IDE syntax coloring — which didn't make it into the official package.
 
 NOTE_1:	PureBASIC code syntax highlighting only applies the following classes:
 			.hljs-comment

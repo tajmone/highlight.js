@@ -7,7 +7,7 @@ Credits: I've taken inspiration from the PureBasic language file for GeSHi, crea
 
 /*	NOTE: 	Taken from PureBASIC Branch!
 			This syntax files differs from official highlight.js package: It adds the "function_call" class, to catch
-			Procedure calls — as is customary with PureBASIC IDE syntax coloring — which didn't make it into the offical
+			Procedure calls — as is customary with PureBASIC IDE syntax coloring — which didn't make it into the official
 			package because highlight.js doesn't provide classes for function calls.
 */
 
