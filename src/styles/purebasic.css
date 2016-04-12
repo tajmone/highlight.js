@@ -35,64 +35,29 @@ NOTE_2:	Color names provided in comments were derived using "Name that Color" on
 
 .hljs, /* --- used for PureBASIC base color --- */
 .hljs-type,  /* --- used for PureBASIC Procedures return type --- */
-.hljs-function, /* --- used for wrapping PureBASIC Procedures definitions --- */
-.hljs-name,
-.hljs-plain,
-.hljs-number,
-.hljs-attribute,
-.hljs-attr,
-.hljs-params,
-.hljs-subst {
+.hljs-function { /* --- used for wrapping PureBASIC Procedures definitions --- */
 	color: #000000; /* Black */
 }
 
-.hljs-comment, /* --- used for PureBASIC Comments --- */
-.hljs-regexp,
-.hljs-section,
-.hljs-selector-pseudo,
-.hljs-addition {
+.hljs-comment { /* --- used for PureBASIC Comments --- */
+
 	color: #00AAAA; /* Persian Green (approx.) */
 }
 
-.hljs-title, .hljs-function_call, /* --- used for PureBASIC Procedures Names --- */
-.hljs-tag,
-.hljs-variable,
-.hljs-code  {
+.hljs-title, .hljs-function_call { /* --- used for PureBASIC Procedures Names --- */
 	color: #006666; /* Blue Stone (approx.) */
 }
 
-.hljs-keyword, /* --- used for PureBASIC Keywords --- */
-.hljs-class,
-.hljs-meta-keyword,
-.hljs-selector-class,
-.hljs-built_in,
-.hljs-builtin-name {
+.hljs-keyword { /* --- used for PureBASIC Keywords --- */
 	color: #006666; /* Blue Stone (approx.) */
 	font-weight: bold;
 }
 
-.hljs-string, /* --- used for PureBASIC Strings --- */
-.hljs-selector-attr {
+.hljs-string { /* --- used for PureBASIC Strings --- */
 	color: #0080FF; /* Azure Radiance (approx.) */
 }
 
-.hljs-symbol, /* --- used for PureBASIC Constants --- */
-.hljs-link,
-.hljs-deletion {
+.hljs-symbol { /* --- used for PureBASIC Constants --- */
 	color: #924B72; /* Cannon Pink (approx.) */
 }
 
-.hljs-meta,
-.hljs-literal,
-.hljs-selector-id {
-	color: #924B72; /* Cannon Pink (approx.) */
-	font-weight: bold;
-}
-
-.hljs-strong {
-	font-weight: bold;
-}
-
-.hljs-emphasis {
-	font-style: italic;
-}
