@@ -5,6 +5,12 @@ Description: Syntax highlighting for PureBASIC (v.5). No inline ASM highlighting
 Credits: I've taken inspiration from the PureBasic language file for GeSHi, created by Gustavo Julio Fiorenza (GuShH).
 */
 
+/*	NOTE: 	Taken from PureBASIC Branch!
+			This syntax files differs from official highlight.js package: It adds the "function_call" class, to catch
+			Procedure calls — as is customary with PureBASIC IDE syntax coloring — which didn't make it into the offical
+			package because highlight.js doesn't provide classes for function calls.
+*/
+
 // Base deafult colors in PB IDE: background: #FFFFDF; foreground: #000000;
 
 function(hljs) {
@@ -57,6 +63,16 @@ function(hljs) {
           hljs.UNDERSCORE_TITLE_MODE // PROCEDURE NAME | PB IDE color: #006666 (Blue Stone)
         ]
       },
+	  { // PROCEDURE CALLS *** NOT IN highlight.js OFFICIAL PACKAGE!!! ***
+		  begin: '[a-zA-Z_]\\w*(\\s*)?\\(',
+		  returnBegin: true,
+		  contains: [
+			  {	// PROCEDURE NAME | PB IDE color: #006666 (Blue Stone)
+				  className: 'function_call',
+				  begin: '[a-zA-Z_]\\w*',
+			  }
+		  ]
+	  },
       STRINGS,
       CONSTANTS
     ]
