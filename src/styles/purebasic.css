@@ -1,6 +1,6 @@
 /*
 
-PureBASIC native IDE style ( version 1.0 - April 2016 )
+PureBASIC native IDE style ( version 1.1 - November 2016 )
 
 by Tristano Ajmone <tajmone@gmail.com>
 
@@ -19,8 +19,15 @@ NOTE_1:	PureBASIC code syntax highlighting only applies the following classes:
 			.hljs-symbol
 
 
-NOTE_2:	Color names provided in comments were derived using "Name that Color" online tool:
-			http://chir.ag/projects/name-that-color	
+NOTE_2:	Color names provided in comments were derived using "Name that Color" PureBASIC tool:
+			https://github.com/tajmone/name-that-color	
+
+CHANGES:
+ v1.1 (2016/11/22):
+ 	-- Renamed colors names using "Name that Color" PureBASIC, instead of
+ 	   "Name that Color" online tool — NTC PureBASIC uses the dE00 algorithm for color
+ 	   difference, which yelds more precise results, and thus different names on some
+ 	   occasions (here, just "Tradewind" for "Persian Green").
 */
 
 .hljs { /* Common set of rules required by highlight.js (don'r remove!) */
@@ -41,7 +48,7 @@ NOTE_2:	Color names provided in comments were derived using "Name that Color" on
 
 .hljs-comment { /* --- used for PureBASIC Comments --- */
 
-	color: #00AAAA; /* Persian Green (approx.) */
+	color: #00AAAA; /* Persian Green/Tradewind (approx.) */
 }
 
 .hljs-title, .hljs-function_call { /* --- used for PureBASIC Procedures Names --- */
