@@ -13,7 +13,7 @@ ECHO ---------------------------------------------------------------------------
 ECHO WARNING: HJS build tool doesn't provide exit codes, so you'll have to verify
 ECHO          manually for errors by reading the output in this screen.
 ECHO ------------------------------------------------------------------------------
-SET _HLJSVER=9.8.0
+SET _HLJSVER=9.8.0b
 SET _DATE="November 23, 2016"
 :: ==============================================================================
 ::                                    PB-ONLY                                    
@@ -26,7 +26,7 @@ CALL :hljsbuild purebasic
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
 CALL :cssbuild purebasic
-SET _TITLE="HLJS v%_HLJSVER% :: PureBASIC Only"
+SET _TITLE="HLJS-PB v%_HLJSVER% :: PureBASIC Only"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only
 :: ==============================================================================
 ::                                    PB-DEV1                                    
@@ -39,8 +39,8 @@ ECHO    ---------------
 CALL :hljsbuild "purebasic bash dos ini powershell"
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
-CALL :cssbuild purebasic monokai-sublime
-SET _TITLE="HLJS v%_HLJSVER% :: PB-DEV1"
+CALL :cssbuild  monokai-sublime purebasic
+SET _TITLE="HLJS-PB v%_HLJSVER% :: PB-DEV1"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only ex-pb-dev1
 :: ==============================================================================
 ::                                    PB-DEV2                                    
@@ -53,8 +53,8 @@ ECHO    ---------------
 CALL :hljsbuild "purebasic bash dos ini powershell diff makefile json"
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
-CALL :cssbuild purebasic diff monokai-sublime
-SET _TITLE="HLJS v%_HLJSVER% :: PB-DEV2"
+CALL :cssbuild  monokai-sublime purebasic diff
+SET _TITLE="HLJS-PB v%_HLJSVER% :: PB-DEV2"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only ex-pb-dev1 ex-pb-dev2
 :: ==============================================================================
 ::                                    PB + ALL                                   
@@ -68,8 +68,8 @@ ECHO    ---------------
 CALL :hljsbuild
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
-CALL :cssbuild purebasic diff monokai-sublime
-SET _TITLE="HLJS v%_HLJSVER% :: All Languages"
+CALL :cssbuild monokai-sublime purebasic diff
+SET _TITLE="HLJS-PB v%_HLJSVER% :: All Languages"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only ex-pb-dev1 ex-pb-dev2
 EXIT /B
 

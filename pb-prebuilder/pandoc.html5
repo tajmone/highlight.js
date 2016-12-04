@@ -63,5 +63,9 @@ $body$
 $for(include-after)$
 $include-after$
 $endfor$
+<div class="warningnote">
+WARNING: This html documents is automatically generated from markdown sources. Any changes made to the html source will be overwritten and lost with the next building process.
+If you wish to contribute changes to this document, add them to the source repository:<br>
+<a href="https://github.com/tajmone/highlight.js/blob/PureBASIC/PureBASIC_README.md" target="_blank">https://github.com/tajmone/highlight.js/blob/PureBASIC/PureBASIC_README.md</a>
 </body>
 </html>

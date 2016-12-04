@@ -3,7 +3,7 @@ Highlight.js Examples
 
 This page is an example (and test) page for the generated HLJS package.
 
-Highlight.js Version: 9.8.0 “New York”, «[PureBASIC Modded Fork](https://github.com/tajmone/highlight.js/tree/PureBASIC)».
+Highlight.js Version: 9.8.0 “New York”, «[PureBASIC Modded Fork](https://github.com/tajmone/highlight.js/tree/PureBASIC)» rev “B”.
 
 Using HLJS
 ----------

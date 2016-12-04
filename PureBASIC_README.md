@@ -2,7 +2,8 @@ Highlight.js / PureBASIC Fork
 =============================
 
     HLJS v9.8.0 «New York»
-    Branch Update: November 23, 2016
+    HLJS-PB Mod v9.8.0b (rev. “B”)
+    Branch Update: December 4, 2016
 
 This branch is a fork of [**highlight.js**](https://highlightjs.org/) with some differences in the way PureBASIC syntax is rendered.
 
@@ -17,6 +18,7 @@ For detailed info on the PureBASIC modded syntax differences, and on the prebuil
 -   [Pre-Built Packages](#pre-built-packages)
 -   [Additional Files And Folders](#additional-files-and-folders)
 -   [Acknowledgments and Credits](#acknowledgments-and-credits)
+-   [Revision Numbering Scheme](#revision-numbering-scheme)
 -   [Branch History](#branch-history)
 
 <!-- /toc -->
@@ -61,10 +63,22 @@ Acknowledgments and Credits
 
 See: [`/pb-prebuilt/README.md`](./pb-prebuilt/README.md#acknowledgments-and-credits).
 
+Revision Numbering Scheme
+=========================
+
+**HLJS-PureBASIC Mod** versioning scheme follows the version number of the official **HLJS** release which merges in, plus a letter to indicate revisions within the same **HLJS** release span. Examples:
+
+1.  `HJLS-PB v9.8.0a` – 1st **HLJS-PB** release built on top of `HLJS v9.8.0`.
+2.  `HJLS-PB v9.8.0b` – 2nd **HLJS-PB** release built on top of `HLJS v9.8.0`.
+3.  `HJLS-PB v9.9.0a` – 1st **HLJS-PB** release built on top of `HLJS v9.9.0`.
+4.  *and so on…*
+
 Branch History
 ==============
 
--   `2016/11/23`
+-   `2016/12/04` – (**HJLS-PB v9.8.0b**)
+    -   Fixed CSS: PureBASIC style for `hljs-title` was being overriden by `monokai-sublime.css` (solved by swapping loading order)
+-   `2016/11/23` – (**HJLS-PB v9.8.0a**)
     -   Updated to **highlight.js** v9.8.0 “New York”.
     -   Added `pb-prebuilt` packages to the repo.
     -   Created CSS Theme for **Diff** syntax.
