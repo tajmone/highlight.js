@@ -3,7 +3,7 @@ Highlight.js Examples
 
 This page is an example (and test) page for the generated HLJS package.
 
-Highlight.js Version: 9.8.0 “New York”, «[PureBASIC Modded Fork](https://github.com/tajmone/highlight.js/tree/PureBASIC)».
+«[Highlight.js PureBASIC Modded Fork](https://github.com/tajmone/highlight.js/tree/PureBASIC)» __v9.9.0a__ (2016/12/18), based on Highlight.js __v9.9.0__ (2016/12/13).
 
 Using HLJS
 ----------
@@ -50,6 +50,8 @@ pre.nohighlight code {
 
 PureBASIC
 =========
+
+PureBASIC CSS Theme based on the original [`purebasic.css`](https://github.com/isagalaev/highlight.js/blob/master/src/styles/purebasic.css) by Tristano Ajmone (extended to include PB mod extra lang token).
 
 ``` {.purebasic}
 Enumeration Test 3 Step 10

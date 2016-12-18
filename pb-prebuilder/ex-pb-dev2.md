@@ -1,6 +1,8 @@
 Diff
 ====
 
+Custom theme by Tristano Ajmone, loosely inspired on [GitHub Compare View](https://github.com/blog/612-introducing-github-compare-view) ([see an example](https://github.com/tajmone/highlight.js/commit/cef34e110a2f1f302fed624db2aa39e45aacc8a9)).
+
 ``` {.diff}
 Index: languages/ini.js
 ===================================================================

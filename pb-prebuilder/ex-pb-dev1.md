@@ -1,7 +1,8 @@
 Bash
 ====
 
-> **NOTE**: Currently there is no custom CSS definition for this language.
+Custom CSS theme by Tristano Ajmone, based on xterm default palette.
+
 
 ``` {.bash}
 #!/bin/bash
