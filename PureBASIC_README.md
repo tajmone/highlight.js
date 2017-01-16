@@ -2,8 +2,8 @@ Highlight.js / PureBASIC Fork
 =============================
 
     HLJS v9.9.0 (2016/12/13)
-    HLJS-PB Mod v9.9.0a (rev. “A”)
-    Branch Update: December 18, 2016
+    HLJS-PB Mod v9.9.0b (rev. “B”)
+    Branch Update: January 17, 2017
 
 This branch is a fork of [**highlight.js**](https://highlightjs.org/) with some differences in the way PureBASIC syntax is rendered.
 
@@ -76,6 +76,9 @@ Revision Numbering Scheme
 Branch History
 ==============
 
+-   `2017/01/17` – (**HJLS-PB v9.9.0b**)
+    -   Added `fasm.js` language definition for **FASM** (v0.1 Alpha) — currently, just a renamed copy of `x86asm.js` lang definition. Soon to become a fully FASM-compliant lang def.
+    -   Added CSS theme for FASM language (temporary).
 -   `2016/12/18` – (**HJLS-PB v9.9.0a**)
     -   Updated to **highlight.js** v9.9.0 (2016-12-13).
     -   Added CSS theme for Bash language.

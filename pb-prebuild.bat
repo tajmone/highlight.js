@@ -2,7 +2,7 @@
 ECHO ==============================================================================
 ECHO                    highlight.js PureBASIC Mod: Pre-Builder                    
 ECHO:
-ECHO ----------------------------{ v1.0 - 2016/11/22 }-----------------------------
+ECHO ----------------------------{ v1.1 - 2017/01/17 }-----------------------------
 ECHO:
 ECHO                               by Tristano Ajmone                              
 ECHO ==============================================================================
@@ -13,8 +13,8 @@ ECHO ---------------------------------------------------------------------------
 ECHO WARNING: HJS build tool doesn't provide exit codes, so you'll have to verify
 ECHO          manually for errors by reading the output in this screen.
 ECHO ------------------------------------------------------------------------------
-SET _HLJSVER=9.9.0a
-SET _DATE="December 18, 2016"
+SET _HLJSVER=9.9.0b
+SET _DATE="Jan 17, 2017"
 :: ==============================================================================
 ::                                    PB-ONLY                                    
 :: ==============================================================================
@@ -34,12 +34,12 @@ CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only
 ECHO ------------------------------------------------------------------------------
 SET _FOLDER=hljs-pb-dev1
 ECHO 2) Building "/%_FOLDER%/":
-ECHO    Included langs: PureBASIC + Bash + DOS + Ini + PowerShell.
+ECHO    Included langs: PureBASIC + Bash + DOS + Ini + PowerShell + FASM.
 ECHO    ---------------
-CALL :hljsbuild "purebasic bash dos ini powershell"
+CALL :hljsbuild "purebasic bash dos ini powershell fasm"
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
-CALL :cssbuild  monokai-sublime purebasic bash
+CALL :cssbuild  monokai-sublime purebasic bash fasm
 SET _TITLE="HLJS-PB v%_HLJSVER% :: PB-DEV1"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only ex-pb-dev1
 :: ==============================================================================
@@ -48,12 +48,12 @@ CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only ex-pb-dev1
 ECHO ------------------------------------------------------------------------------
 SET _FOLDER=hljs-pb-dev2
 ECHO 3) Building "/%_FOLDER%/":
-ECHO    Included langs: PureBASIC + Bash + DOS + Ini + PowerShell + Diff + Makefile + JSON.
+ECHO    Included langs: PureBASIC + Bash + DOS + Ini + PowerShell + FASM + Diff + Makefile + JSON.
 ECHO    ---------------
-CALL :hljsbuild "purebasic bash dos ini powershell diff makefile json"
+CALL :hljsbuild "purebasic bash dos ini powershell fasm diff makefile json"
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
-CALL :cssbuild  monokai-sublime purebasic bash diff
+CALL :cssbuild  monokai-sublime purebasic bash fasm diff
 SET _TITLE="HLJS-PB v%_HLJSVER% :: PB-DEV2"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only ex-pb-dev1 ex-pb-dev2
 :: ==============================================================================
@@ -68,7 +68,7 @@ ECHO    ---------------
 CALL :hljsbuild
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
-CALL :cssbuild monokai-sublime purebasic bash diff
+CALL :cssbuild monokai-sublime purebasic bash fasm diff
 SET _TITLE="HLJS-PB v%_HLJSVER% :: All Languages"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only ex-pb-dev1 ex-pb-dev2
 EXIT /B
