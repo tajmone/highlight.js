@@ -2,7 +2,7 @@
 ECHO ==============================================================================
 ECHO                    Highlight.js :: PureBASIC Archives Build                   
 ECHO:
-ECHO ----------------------------{ v1.0 - 2017/01/21 }-----------------------------
+ECHO ----------------------------{ v1.1 - 2017/01/21 }-----------------------------
 ECHO:
 ECHO                               by Tristano Ajmone                              
 ECHO ==============================================================================
@@ -23,7 +23,7 @@ CALL HLJS-PB_env-vars.bat
 ::   http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases
 ::   ------------------------------------------------------------------------------
 ::   NOTE: Language names must be lower case!
-SET "_LANGS=purebasic fasm bash dos ini markdown xml css"
+SET "_LANGS=purebasic fasm bash dos ini markdown xml css yaml"
 FOR %%a IN (%_LANGS%) DO ECHO  - %%a
 ECHO The built HLJS package will be copied to the "pb-archives" folder.
 ECHO ------------------------------------------------------------------------------

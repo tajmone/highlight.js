@@ -77,6 +77,7 @@ Branch History
 ==============
 
 -   `2017/01/21`
+    -   Added yaml lang to PB-Archives Bundle.
     -   Added `HLJS-PB_env-vars.bat`: sets shared environment vars (`%_HLJSVER%` and `%_DATE%`) used by HLJS-PB automation scripts.
     -   Added `build-pb-archives.bat` for creating an HLJS-PB package for the [**PureBASIC Archives**](https://github.com/tajmone/purebasic-archives) project. Bundled langs: PureBASIC, FASM, Bash, DOS, ini, Markdown, XML, CSS.
     -   Fixed markdown source error in PureBASIC syntax instructions for `pb-prebuilt`.

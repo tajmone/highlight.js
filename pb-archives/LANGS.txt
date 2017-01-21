@@ -8,3 +8,4 @@ Bundled languages:
 - markdown
 - xml
 - css
+- yaml
