@@ -78,7 +78,8 @@ Branch History
 
 -   `2017/01/21`
     -   Added `HLJS-PB_env-vars.bat`: sets shared environment vars (`%_HLJSVER%` and `%_DATE%`) used by HLJS-PB automation scripts.
-    -   Added `build-pb-archives.bat` for creating an HLJS-PB package for the [**PureBASIC Archives**](https://github.com/tajmone/purebasic-archives) project. Bundled langs: PureBASIC, FASM, Bash, DOS, ini, Markdown, XML, CSS
+    -   Added `build-pb-archives.bat` for creating an HLJS-PB package for the [**PureBASIC Archives**](https://github.com/tajmone/purebasic-archives) project. Bundled langs: PureBASIC, FASM, Bash, DOS, ini, Markdown, XML, CSS.
+    -   Fixed markdown source error in PureBASIC syntax instructions for `pb-prebuilt`.
 -   `2017/01/17` – (**HJLS-PB v9.9.0b**)
     -   Added `fasm.js` language definition for **FASM** (v0.1 Alpha) — currently, just a renamed copy of `x86asm.js` lang definition. Soon to become a fully FASM-compliant lang def.
     -   Added CSS theme for FASM language (temporary).

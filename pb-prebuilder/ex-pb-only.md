@@ -104,6 +104,8 @@ To enable PB Pseudocode in html, add “pseudocode” after “purebasic” (sep
 
 In Pandoc’s markdown, you’ll have to use this syntax (which might not work with other markdown parsers):
 
-`{.nohighlight}`{.purebasic .pseudocode} \`\`\`
+``` {.nohighlight}
+ ``` {.purebasic .pseudocode}
+```
 
 For other markdown flavors/parsers, check the relevant documentation. Basically, want you want to achieve is to have both “purebasic” and “pseudocode” to appear as classnames in the final html’s `<code>` tag.
