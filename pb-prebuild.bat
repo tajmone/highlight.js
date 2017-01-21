@@ -2,7 +2,7 @@
 ECHO ==============================================================================
 ECHO                    highlight.js PureBASIC Mod: Pre-Builder                    
 ECHO:
-ECHO ----------------------------{ v1.1 - 2017/01/17 }-----------------------------
+ECHO ----------------------------{ v1.2 - 2017/01/21 }-----------------------------
 ECHO:
 ECHO                               by Tristano Ajmone                              
 ECHO ==============================================================================
@@ -13,8 +13,13 @@ ECHO ---------------------------------------------------------------------------
 ECHO WARNING: HJS build tool doesn't provide exit codes, so you'll have to verify
 ECHO          manually for errors by reading the output in this screen.
 ECHO ------------------------------------------------------------------------------
-SET _HLJSVER=9.9.0b
-SET _DATE="Jan 17, 2017"
+::   ==============================================================================
+::                                GET SHARED ENV VARS                              
+::   ==============================================================================
+::   Call a common batch file that sets required env vars:
+::    -- %_HLJSVER% = Current version of HLJS-PB mod
+::    -- %_DATE%   = Release date of current HLJS-PB.
+CALL HLJS-PB_env-vars.bat
 :: ==============================================================================
 ::                                    PB-ONLY                                    
 :: ==============================================================================
@@ -117,5 +122,5 @@ IF NOT "%1" == "" (
     GOTO :getParamMD
 )
 SET _SOURCE=%_SOURCE% pb-prebuilder\metadata.yaml
-pandoc -M title=%_TITLE% -M date=%_DATE% -s -t html5 --template=pb-prebuilder\pandoc.html5 --no-highlight --smart --normalize --toc -o %_TARGET% %_SOURCE%
+pandoc -M title=%_TITLE% -M date="%_DATE%" -s -t html5 --template=pb-prebuilder\pandoc.html5 --no-highlight --smart --normalize --toc -o %_TARGET% %_SOURCE%
 EXIT /B
