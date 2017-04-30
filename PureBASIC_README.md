@@ -1,9 +1,10 @@
 Highlight.js / PureBASIC Fork
 =============================
 
-    HLJS v9.9.0 (2016/12/13)
-    HLJS-PB Mod v9.9.0b (rev. “B”)
-    Branch Update: January 17, 2017
+    HLJS v9.11.0 (2017/04/19)
+    HLJS-PB Mod v9.11.0
+    PureBASIC 5.00–5.60
+    Branch Update: April 30, 2017
 
 This branch is a fork of [**highlight.js**](https://highlightjs.org/) with some differences in the way PureBASIC syntax is rendered.
 
@@ -76,6 +77,9 @@ Revision Numbering Scheme
 Branch History
 ==============
 
+-   `2017/04/30` – (**HJLS-PB v9.11.0**)
+    -   Updated PureBASIC syntax definition to v5.60 (fixes missing keywords in the previous version).
+    -   Updated to Highlight.js v9.11.0 (2017/04/19).
 -   `2017/01/21`
     -   Added yaml lang to PB-Archives Bundle.
     -   Added `HLJS-PB_env-vars.bat`: sets shared environment vars (`%_HLJSVER%` and `%_DATE%`) used by HLJS-PB automation scripts.
