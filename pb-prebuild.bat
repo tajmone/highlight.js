@@ -2,7 +2,7 @@
 ECHO ==============================================================================
 ECHO                    highlight.js PureBASIC Mod: Pre-Builder                    
 ECHO:
-ECHO ----------------------------{ v1.2 - 2017/01/21 }-----------------------------
+ECHO ----------------------------{ v2.0 - 2018/10/01 }-----------------------------
 ECHO:
 ECHO                               by Tristano Ajmone                              
 ECHO ==============================================================================
@@ -13,16 +13,19 @@ ECHO ---------------------------------------------------------------------------
 ECHO WARNING: HJS build tool doesn't provide exit codes, so you'll have to verify
 ECHO          manually for errors by reading the output in this screen.
 ECHO ------------------------------------------------------------------------------
-::   ==============================================================================
-::                                GET SHARED ENV VARS                              
-::   ==============================================================================
+:: =============================================================================
+::                             GET SHARED ENV VARS                              
+:: =============================================================================
 ::   Call a common batch file that sets required env vars:
-::    -- %_HLJSVER% = Current version of HLJS-PB mod
-::    -- %_DATE%   = Release date of current HLJS-PB.
+::    -- %hjsModVer%  = Current HLJS-PB version.
+::    -- %hjsModDate% = Current HLJS-PB release date.
+::    -- %hjsVer%     = Highlight.js version.
+::    -- %hjsDate%    = Highlight.js release date.
+::    -- %hjsPBver%   = PureBASIC version in HLJS.
 CALL HLJS-PB_env-vars.bat
-:: ==============================================================================
-::                                    PB-ONLY                                    
-:: ==============================================================================
+:: =============================================================================
+::                                   PB-ONLY                                    
+:: =============================================================================
 SET _FOLDER=hljs-pb-only
 ECHO 1) Building "/%_FOLDER%/":
 ECHO    Included langs: PureBASIC.
@@ -31,11 +34,11 @@ CALL :hljsbuild purebasic
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
 CALL :cssbuild purebasic
-SET _TITLE="HLJS-PB v%_HLJSVER% :: PureBASIC Only"
+SET _TITLE="HLJS-PB v%hjsModVer% :: PureBASIC Only"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only
-:: ==============================================================================
-::                                    PB-DEV1                                    
-:: ==============================================================================
+:: =============================================================================
+::                                   PB-DEV1                                    
+:: =============================================================================
 ECHO ------------------------------------------------------------------------------
 SET _FOLDER=hljs-pb-dev1
 ECHO 2) Building "/%_FOLDER%/":
@@ -45,11 +48,11 @@ CALL :hljsbuild "purebasic bash dos ini powershell fasm"
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
 CALL :cssbuild  monokai-sublime purebasic bash fasm
-SET _TITLE="HLJS-PB v%_HLJSVER% :: PB-DEV1"
+SET _TITLE="HLJS-PB v%hjsModVer% :: PB-DEV1"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only ex-pb-dev1
-:: ==============================================================================
-::                                    PB-DEV2                                    
-:: ==============================================================================
+:: =============================================================================
+::                                   PB-DEV2                                    
+:: =============================================================================
 ECHO ------------------------------------------------------------------------------
 SET _FOLDER=hljs-pb-dev2
 ECHO 3) Building "/%_FOLDER%/":
@@ -59,11 +62,11 @@ CALL :hljsbuild "purebasic bash dos ini powershell fasm diff makefile json"
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
 CALL :cssbuild  monokai-sublime purebasic bash fasm diff
-SET _TITLE="HLJS-PB v%_HLJSVER% :: PB-DEV2"
+SET _TITLE="HLJS-PB v%hjsModVer% :: PB-DEV2"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only ex-pb-dev1 ex-pb-dev2
-:: ==============================================================================
-::                                    PB + ALL                                   
-:: ==============================================================================
+:: =============================================================================
+::                                   PB + ALL                                   
+:: =============================================================================
 ECHO ------------------------------------------------------------------------------
 ECHO ------------------------------------------------------------------------------
 SET _FOLDER=hljs-all
@@ -74,53 +77,75 @@ CALL :hljsbuild
 ECHO    ---------------
 CALL :hljsmove %_FOLDER%
 CALL :cssbuild monokai-sublime purebasic bash fasm diff
-SET _TITLE="HLJS-PB v%_HLJSVER% :: All Languages"
+SET _TITLE="HLJS-PB v%hjsModVer% :: All Languages"
 CALL :md2html "%~dp0pb-prebuilt\%_FOLDER%\" ex-pb-only ex-pb-dev1 ex-pb-dev2
 EXIT /B
 
-:: ******************************************************************************
-:: *                                                                            *
-:: *                              BATCH FUNCTIONS                               *
-:: *                                                                            *
-:: ******************************************************************************
+:: *****************************************************************************
+:: *                                                                           *
+:: *                             BATCH FUNCTIONS                               *
+:: *                                                                           *
+:: *****************************************************************************
 :: 
-:: ==============================================================================
-::                                   hljsbuild                                   
-:: ==============================================================================
+:: =============================================================================
+::                                  hljsbuild                                   
+:: =============================================================================
+:: Build a custom HLJS package containing the languages specified in parameter.
+:: -----------------------------------------------------------------------------
 :hljsbuild
 node tools/build.js --target browser %~1
 EXIT /B
-:: ==============================================================================
-::                                    hljsmove                                   
-:: ==============================================================================
+:: =============================================================================
+::                                   hljsmove                                   
+:: =============================================================================
+:: Move the built custom HLJS package to folder of parameter.
+:: -----------------------------------------------------------------------------
 :hljsmove
 MOVE /Y "build\highlight.pack.js" "pb-prebuilt\%~1\highlight.pack.js"
 EXIT /B
-:: ==============================================================================
-::                                    cssbuild                                   
-:: ==============================================================================
+:: =============================================================================
+::                                   cssbuild                                   
+:: =============================================================================
+:: This func takes multiple parameter, each is the name of a CSS file (without
+:: ".css" extension) inside "pb-prebuilt\css\". The CSS files of the params are
+:: then merged and minified via cleancss into a single "highlight.css" file in
+:: "pb-prebuilt\%_FOLDER%\".
+:: -----------------------------------------------------------------------------
 :cssbuild
 SET _SOURCE=
 :getParamCSS
 IF NOT "%1" == "" (
-	SET _SOURCE=%_SOURCE% pb-prebuilt\css\%~1.css
-	SHIFT
-	GOTO :getParamCSS
+    SET _SOURCE=%_SOURCE% pb-prebuilt\css\%~1.css
+    SHIFT
+    GOTO :getParamCSS
 )
 CALL cleancss -o pb-prebuilt\%_FOLDER%\highlight.css %_SOURCE%
 EXIT /B
-:: ==============================================================================
-::                                    md2html                                    
-:: ==============================================================================
+:: =============================================================================
+::                                   md2html                                    
+:: =============================================================================
+:: Convert from pandoc markdown to html via PP and pandoc, using cutom pandoc
+:: template.
+:: -----------------------------------------------------------------------------
 :md2html
 SET _TARGET="%~1example.html"
 SET _SOURCE=
 :getParamMD
 SHIFT
 IF NOT "%1" == "" (
-	SET _SOURCE=%_SOURCE% pb-prebuilder\%~1.md
+    SET _SOURCE=%_SOURCE% pb-prebuilder\%~1.md
     GOTO :getParamMD
 )
 SET _SOURCE=%_SOURCE% pb-prebuilder\metadata.yaml
-pandoc -M title=%_TITLE% -M date="%_DATE%" -s -t html5 --template=pb-prebuilder\pandoc.html5 --no-highlight --smart --normalize --toc -o %_TARGET% %_SOURCE%
+PP %_SOURCE% | pandoc^
+    -f markdown^
+    -t html5^
+    --template=pb-prebuilder\pandoc.html5^
+    --standalone^
+    --wrap=none^
+    --no-highlight^
+    --toc^
+    -M title=%_TITLE%^
+    -M date="%hjsModDate%"^
+    -o %_TARGET%
 EXIT /B

@@ -1,106 +1,172 @@
-Highlight.js / PureBASIC Fork
-=============================
+# Highlight.js / PureBASIC Fork
 
-    HLJS v9.11.0 (2017/04/19)
-    HLJS-PB Mod v9.11.0b
+    HLJS v9.12.0 (2017/05/31)
+    HLJS-PB Mod v9.12.0a
     PureBASIC 5.00–5.60
-    Branch Update: May 12, 2017
+    Branch Update: Oct 1, 2018
 
 This branch is a fork of [**highlight.js**](https://highlightjs.org/) with some differences in the way PureBASIC syntax is rendered.
 
-Furthermore, in [`/pb-prebuilt/`](./pb-prebuilt/) you’ll find some pre-built HLJS packages, with PureBASIC (modded) syntax being the central language in all of them.
+Furthermore, in [`/pb-prebuilt/`](./pb-prebuilt/) you'll find some pre-built HLJS packages, with PureBASIC (modded) syntax being the central language in all of them.
 
 For detailed info on the PureBASIC modded syntax differences, and on the prebuilt packages, read [`/pb-prebuilt/README.md`](./pb-prebuilt/README.md).
 
-------------------------------------------------------------------------
 
-<!-- #toc -->
--   [Difference from Official HLJS](#difference-from-official-hljs)
--   [Pre-Built Packages](#pre-built-packages)
--   [Additional Files And Folders](#additional-files-and-folders)
--   [Acknowledgments and Credits](#acknowledgments-and-credits)
--   [Revision Numbering Scheme](#revision-numbering-scheme)
--   [Branch History](#branch-history)
+-----
 
-<!-- /toc -->
+**Table of Contents**
 
-------------------------------------------------------------------------
+<!-- MarkdownTOC autolink="true" bracket="round" autoanchor="false" lowercase="only_ascii" uri_encoding="true" levels="1,2,3" -->
 
-Difference from Official HLJS
-=============================
+- [Difference from Official HLJS](#difference-from-official-hljs)
+- [Pre-Built Packages](#pre-built-packages)
+- [Additional Files And Folders](#additional-files-and-folders)
+    - [PureBASIC Archives Build](#purebasic-archives-build)
+    - [Pre-built PureBASIC HLJS Bundles](#pre-built-purebasic-hljs-bundles)
+- [Acknowledgments and Credits](#acknowledgments-and-credits)
+- [Revision Numbering Scheme](#revision-numbering-scheme)
+- [Branch History](#branch-history)
+
+<!-- /MarkdownTOC -->
+
+-----
+
+
+# Difference from Official HLJS
 
 This branch is a fork of [**highlight.js**](https://highlightjs.org/) with some differences in the PureBASIC syntax file:
 
--   I’ve added in the `purebasic.js` code the “`function_call`” class, to catch Procedure calls — as is customary with PureBASIC IDE syntax coloring — which didn’t make it into the official package because **highlight.js** doesn’t provide classes for function calls.
+- I've added in the `purebasic.js` code the "`function_call`" class, to catch Procedure calls — as is customary with PureBASIC IDE syntax coloring — which didn't make it into the official package because **highlight.js** doesn't provide classes for function calls.
 
--   Also, the `purebasic.css` file was changed to focus on highilighting PureBASIC syntax *only*, as well as incorporating the “`function_call`” class.
+- Also, the `purebasic.css` file was changed to focus on highilighting PureBASIC syntax *only*, as well as incorporating the "`function_call`" class.
 
-Here you’ll also find some pre-built highlight.js packages, with a combination of different language syntaxes chosen for common work scenarios.
+Here you'll also find some pre-built highlight.js packages, with a combination of different language syntaxes chosen for common work scenarios.
 
-Pre-Built Packages
-==================
+# Pre-Built Packages
 
-In the [`/pb-prebuilt/`](./pb-prebuilt/) folder you’ll find some pre-built HLJS packages, with PureBASIC (modded) syntax being the central language in all of them.
+In the [`/pb-prebuilt/`](./pb-prebuilt/) folder you'll find some pre-built HLJS packages, with PureBASIC (modded) syntax being the central language in all of them.
 
-Additional Files And Folders
-============================
+# Additional Files And Folders
 
-The `PureBASIC` branch adds some folders and files to **highlight.js** `master` branch:
+The `PureBASIC` branch adds some folders and files to **highlight.js** `master` branch.
 
--   [`/pb-prebuilt/`](./pb-prebuilt/) – contains some pre-built HLJS packages (with modded PureBASIC syntax) and stylesheets with multi-language themes:
-    -   [`/hljs-pb-only/`](./pb-prebuilt/hljs-pb-only/) – HLJS + CSS with only PureBASIC syntax and theme.
-    -   [`/hljs-pb-dev1/`](./pb-prebuilt/hljs-pb-dev1/) – HLJS + CSS with PureBASIC plus some common syntaxes and themes related to PB developement.
-    -   [`/hljs-pb-dev2/`](./pb-prebuilt/hljs-pb-dev2/) – Additional syntaxes on top of the previous package.
-    -   [`/hljs-all/`](./pb-prebuilt/hljs-all/) – HLJS + CSS with all available syntaxes and theme.
-    -   [`/css/`](./pb-prebuilt/css/) – The language-specific themes in individual CSS stylesheet – which are used for creating the final packages’s stylesheet.
-    -   [`/resources/`](./resources/) – Resources for HTML documents (CSS, images, etc.).
--   [`/pb-prebuilder/`](./pb-prebuilder/) – Scripts and resources required during the creation of pre-built packages, their stylesheets and example files.
--   `pb-prebuild.bat` – The batch script that auto-magically creates the pre-built packages. Requires the following apps:
-    -   [Pandoc](http://pandoc.org/)
-    -   [clean-css](https://www.npmjs.com/package/clean-css) (Node.js)
+## PureBASIC Archives Build
 
-Acknowledgments and Credits
-===========================
+These are some pre-built HLJS packages (with modded PureBASIC syntax) which I use for the [PureBASIC Archives] project.
+
+- [`/pb-archives/`](./pb-archives):
+  + [`highlight.pack.js`](./highlight.pack.js) — custom HLJS bundle (minified).
+  + [`LANGS.txt`](./LANGS.txt) — version info and languages list (autogenerated).
+
+To update the folder contents, execute this batch:
+
+- [`build-pb-archives.bat`](./build-pb-archives.bat)
+
+Bundled languages in the package:
+
+- PureBASIC (modded)
+- Fasm
+- Bash
+- Dos
+- ini
+- Markdown
+- XML
+- CSS
+- YAML
+
+
+## Pre-built PureBASIC HLJS Bundles
+
+Some pre-built HLJS packages (with modded PureBASIC syntax) and stylesheets with multi-language themes:
+
+- [`/pb-prebuilt/`](./pb-prebuilt/): 
+    + [`/hljs-pb-only/`](./pb-prebuilt/hljs-pb-only/) – HLJS + CSS with only PureBASIC syntax and theme.
+    + [`/hljs-pb-dev1/`](./pb-prebuilt/hljs-pb-dev1/) – HLJS + CSS with PureBASIC plus some common syntaxes and themes related to PB developement.
+    + [`/hljs-pb-dev2/`](./pb-prebuilt/hljs-pb-dev2/) – Additional syntaxes on top of the previous package.
+    + [`/hljs-all/`](./pb-prebuilt/hljs-all/) – HLJS + CSS with all available Highlight.js syntaxes and all of the above themes.
+    + [`/css/`](./pb-prebuilt/css/) – The language-specific themes in individual CSS stylesheet – which are used for creating the final packages's stylesheet.
+    + [`/resources/`](./resources/) – Resources for HTML documents (CSS, images, etc.).
+
+If you need to update the folder contents (HLJS bundles and all), execute this batch:
+
+- `pb-prebuild.bat`
+
+The batch script that auto-magically creates the pre-built packages. Requires the following apps:
+
+- [Pandoc]  \>= 2.3.1 ([download page](https://github.com/jgm/pandoc/releases))
+- [PP]  \>= 2.6 ([download page](http://cdsoft.fr/pp/download.html))
+- [clean-css]  (Node.js)
+
+The sources used to build the contents are in this folder:
+
+- [`/pb-prebuilder/`](./pb-prebuilder/)
+ 
+It contains scripts and resources required during the creation of pre-built packages, their stylesheets and example files.
+
+Highlight.js version number and the dates in the example pages are controlled via environment variables set in this file:
+
+- [`HLJS-PB_env-vars.bat`](./HLJS-PB_env-vars.bat)
+
+So, editing them in this file will update the values in all the required places.
+
+# Acknowledgments and Credits
 
 See: [`/pb-prebuilt/README.md`](./pb-prebuilt/README.md#acknowledgments-and-credits).
 
-Revision Numbering Scheme
-=========================
+# Revision Numbering Scheme
 
 **HLJS-PureBASIC Mod** versioning scheme follows the version number of the official **HLJS** release which merges in, plus a letter to indicate revisions within the same **HLJS** release span. Examples:
 
-1.  `HJLS-PB v9.8.0a` – 1st **HLJS-PB** release built on top of `HLJS v9.8.0`.
-2.  `HJLS-PB v9.8.0b` – 2nd **HLJS-PB** release built on top of `HLJS v9.8.0`.
-3.  `HJLS-PB v9.9.0a` – 1st **HLJS-PB** release built on top of `HLJS v9.9.0`.
-4.  *and so on…*
+1. `HJLS-PB v9.8.0a` – 1st **HLJS-PB** release built on top of `HLJS v9.8.0`.
+2. `HJLS-PB v9.8.0b` – 2nd **HLJS-PB** release built on top of `HLJS v9.8.0`.
+3. `HJLS-PB v9.9.0a` – 1st **HLJS-PB** release built on top of `HLJS v9.9.0`.
+4. *and so on…*
 
-Branch History
-==============
+# Branch History
 
--   `2017/05/12` – (**HJLS-PB v9.11.0b**)
-    -   BUG-FIX: Some keywords were accidentally joyned together. Now fixed.
--   `2017/04/30` – (**HJLS-PB v9.11.0**)
-    -   Updated PureBASIC syntax definition to v5.60 (fixes missing keywords in the previous version).
-    -   Updated to Highlight.js v9.11.0 (2017/04/19).
--   `2017/01/21`
-    -   Added yaml lang to PB-Archives Bundle.
-    -   Added `HLJS-PB_env-vars.bat`: sets shared environment vars (`%_HLJSVER%` and `%_DATE%`) used by HLJS-PB automation scripts.
-    -   Added `build-pb-archives.bat` for creating an HLJS-PB package for the [**PureBASIC Archives**](https://github.com/tajmone/purebasic-archives) project. Bundled langs: PureBASIC, FASM, Bash, DOS, ini, Markdown, XML, CSS.
-    -   Fixed markdown source error in PureBASIC syntax instructions for `pb-prebuilt`.
--   `2017/01/17` – (**HJLS-PB v9.9.0b**)
-    -   Added `fasm.js` language definition for **FASM** (v0.1 Alpha) — currently, just a renamed copy of `x86asm.js` lang definition. Soon to become a fully FASM-compliant lang def.
-    -   Added CSS theme for FASM language (temporary).
--   `2016/12/18` – (**HJLS-PB v9.9.0a**)
-    -   Updated to **highlight.js** v9.9.0 (2016-12-13).
-    -   Added CSS theme for Bash language.
--   `2016/12/04` – (**HJLS-PB v9.8.0b**)
-    -   Fixed CSS: PureBASIC style for `hljs-title` was being overriden by `monokai-sublime.css` (solved by swapping loading order)
--   `2016/11/23` – (**HJLS-PB v9.8.0a**)
-    -   Updated to **highlight.js** v9.8.0 “New York”.
-    -   Added `pb-prebuilt` packages to the repo.
-    -   Created CSS Theme for **Diff** syntax.
--   `2016/04/07`
-    -   Forked Branch publication date.
-    -   Created PureBASIC syntax and theme.
-    -   **highlight.js** v9.3.0 (2016-04-05).
+- `2018/10/01` – (**HJLS-PB v9.12.0a**)
+    + **Pandoc v2 + PP** — Updated all script to use new [pandoc] 2 version, in conjuction with [PP] preprocessor.
+    + Env Vars changes — Renamed the env vars used to track HLJS version and date, and added new ones. Now PP is used to inject them in markdown documents too, via scripts (no manual changes needed).
+    + stop using **[gfmtoc]** to update Table of Contents, use Sublime Text's **[MarkdownTOC]** instead.
+    + stop using pandoc to cleanup markdown source files; this creates problems with PP now.
+- `2017/05/12` – (**HJLS-PB v9.11.0b**)
+    + BUG-FIX: Some keywords were accidentally joyned together. Now fixed.
+- `2017/04/30` – (**HJLS-PB v9.11.0**)
+    + Updated PureBASIC syntax definition to v5.60 (fixes missing keywords in the previous version).
+    + Updated to Highlight.js v9.11.0 (2017/04/19).
+- `2017/01/21`
+    + Added yaml lang to PB-Archives Bundle.
+    + Added `HLJS-PB_env-vars.bat`: sets shared environment vars (`%_HLJSVER%` and `%_DATE%`) used by HLJS-PB automation scripts.
+    + Added `build-pb-archives.bat` for creating an HLJS-PB package for the [**PureBASIC Archives**](https://github.com/tajmone/purebasic-archives) project. Bundled langs: PureBASIC, FASM, Bash, DOS, ini, Markdown, XML, CSS.
+    + Fixed markdown source error in PureBASIC syntax instructions for `pb-prebuilt`.
+- `2017/01/17` – (**HJLS-PB v9.9.0b**)
+    + Added `fasm.js` language definition for **FASM** (v0.1 Alpha) — currently, just a renamed copy of `x86asm.js` lang definition. Soon to become a fully FASM-compliant lang def.
+    + Added CSS theme for FASM language (temporary).
+- `2016/12/18` – (**HJLS-PB v9.9.0a**)
+    + Updated to **highlight.js** v9.9.0 (2016-12-13).
+    + Added CSS theme for Bash language.
+- `2016/12/04` – (**HJLS-PB v9.8.0b**)
+    + Fixed CSS: PureBASIC style for `hljs-title` was being overriden by `monokai-sublime.css` (solved by swapping loading order)
+- `2016/11/23` – (**HJLS-PB v9.8.0a**)
+    + Updated to **highlight.js** v9.8.0 "New York".
+    + Added `pb-prebuilt` packages to the repo.
+    + Created CSS Theme for **Diff** syntax.
+- `2016/04/07`
+    + Forked Branch publication date.
+    + Created PureBASIC syntax and theme.
+    + **highlight.js** v9.3.0 (2016-04-05).
 
+
+<!-----------------------------------------------------------------------------
+                               REFERENCE LINKS                                
+------------------------------------------------------------------------------>
+
+[PureBASIC Archives]: https://github.com/tajmone/purebasic-archives "Visit the PureBASIC Archives project"
+
+[Pandoc]: http://pandoc.org/
+[PP]: https://github.com/CDSoft/pp
+[clean-css]: https://www.npmjs.com/package/clean-css
+[gfmtoc]: https://www.npmjs.com/package/@hail2u/gfmtoc
+[MarkdownTOC]: https://packagecontrol.io/packages/MarkdownTOC
+
+<!-- EOF -->

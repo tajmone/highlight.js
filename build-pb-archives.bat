@@ -2,27 +2,30 @@
 ECHO ==============================================================================
 ECHO                    Highlight.js :: PureBASIC Archives Build                   
 ECHO:
-ECHO ----------------------------{ v1.1 - 2017/01/21 }-----------------------------
+ECHO ----------------------------{ v2.0 - 2018/10/01 }-----------------------------
 ECHO:
 ECHO                               by Tristano Ajmone                              
 ECHO ==============================================================================
 ECHO This script builds a custom HLJS package (with modded-PureBASIC syntax) for
 ECHO the PureBASIC Archives project. It bundles together the language syntaxes used
 ECHO within PB Archives documents:
-::   ==============================================================================
-::                                GET SHARED ENV VARS                              
-::   ==============================================================================
+:: =============================================================================
+::                             GET SHARED ENV VARS                              
+:: =============================================================================
 ::   Call a common batch file that sets required env vars:
-::    -- %_HLJSVER% = Current version of HLJS-PB mod
-::    -- %_DATE%   = Release date of current HLJS-PB.
+::    -- %hjsModVer%  = Current HLJS-PB version.
+::    -- %hjsModDate% = Current HLJS-PB release date.
+::    -- %hjsVer%     = Highlight.js version.
+::    -- %hjsDate%    = Highlight.js release date.
+::    -- %hjsPBver%   = PureBASIC version in HLJS.
 CALL HLJS-PB_env-vars.bat
-::   ==============================================================================
-::                                SET LANGUAGES LISTS                              
-::   ==============================================================================
-::   For a full list of languages available, see:
-::   http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases
-::   ------------------------------------------------------------------------------
-::   NOTE: Language names must be lower case!
+:: =============================================================================
+::                             SET LANGUAGES LISTS                              
+:: =============================================================================
+:: For a full list of languages available, see:
+:: http://highlightjs.readthedocs.io/en/latest/css-classes-reference.html#language-names-and-aliases
+:: -----------------------------------------------------------------------------
+::    NOTE: Language names must be lower case!
 SET "_LANGS=purebasic fasm bash dos ini markdown xml css yaml"
 FOR %%a IN (%_LANGS%) DO ECHO  - %%a
 ECHO The built HLJS package will be copied to the "pb-archives" folder.
@@ -43,7 +46,7 @@ ECHO ===========================================================================
 ECHO 3) Creating "pb-archives\LANGS.txt"
 ECHO ------------------------------------------------------------------------------
 ::   Create a "LANGS.txt" file in "pb-archives" folder, listing all bundled langs.
-ECHO Highlight.js PureBASIC mod v%_HLJSVER% (%_DATE%).> pb-archives\LANGS.txt
+ECHO Highlight.js PureBASIC mod v%hjsModVer% (%hjsModDate%).> pb-archives\LANGS.txt
 ECHO Bundled languages:>> pb-archives\LANGS.txt
 FOR %%a IN (%_LANGS%) DO ECHO - %%a>> pb-archives\LANGS.txt
 ECHO ==============================================================================

@@ -1,0 +1,16 @@
+# ------------------------------------------------------------------------------
+# Highlight.js / PureBASIC Fork:
+# https://github.com/tajmone/highlight.js/tree/PureBASIC
+# ------------------------------------------------------------------------------
+# Custom Git settings overrides for folder:
+# /pb-prebuilder/
+
+# PureBASIC IDE configuration files:
+*.cfg
+
+# misc work and backup files:
+___*.*
+
+# links and shortcuts:
+*.lnk
+*.url
