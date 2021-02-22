@@ -2,9 +2,11 @@
 Language: AngelScript
 Author: Melissa Geels <melissa@nimble.tools>
 Category: scripting
+Website: https://www.angelcode.com/angelscript/
 */
 
-function(hljs) {
+/** @type LanguageFn */
+export default function(hljs) {
   var builtInTypeMode = {
     className: 'built_in',
     begin: '\\b(void|bool|int|int8|int16|int32|int64|uint|uint8|uint16|uint32|uint64|string|ref|array|double|float|auto|dictionary)'
@@ -25,28 +27,22 @@ function(hljs) {
   objectHandleMode.contains = [ genericMode ];
 
   return {
-    aliases: [ 'asc' ],
+    name: 'AngelScript',
+    aliases: ['asc'],
 
     keywords:
       'for in|0 break continue while do|0 return if else case switch namespace is cast ' +
       'or and xor not get|0 in inout|10 out override set|0 private public const default|0 ' +
-      'final shared external mixin|10 enum typedef funcdef this super import from interface',
+      'final shared external mixin|10 enum typedef funcdef this super import from interface ' +
+      'abstract|0 try catch protected explicit property',
 
     // avoid close detection with C# and JS
-    illegal: '(^using\\s+[A-Za-z0-9_\\.]+;$|\\bfunction\s*[^\\(])',
+    illegal: '(^using\\s+[A-Za-z0-9_\\.]+;$|\\bfunction\\s*[^\\(])',
 
     contains: [
       { // 'strings'
         className: 'string',
         begin: '\'', end: '\'',
-        illegal: '\\n',
-        contains: [ hljs.BACKSLASH_ESCAPE ],
-        relevance: 0
-      },
-
-      { // "strings"
-        className: 'string',
-        begin: '"', end: '"',
         illegal: '\\n',
         contains: [ hljs.BACKSLASH_ESCAPE ],
         relevance: 0
@@ -58,11 +54,24 @@ function(hljs) {
         begin: '"""', end: '"""'
       },
 
+      { // "strings"
+        className: 'string',
+        begin: '"', end: '"',
+        illegal: '\\n',
+        contains: [ hljs.BACKSLASH_ESCAPE ],
+        relevance: 0
+      },
+
       hljs.C_LINE_COMMENT_MODE, // single-line comments
       hljs.C_BLOCK_COMMENT_MODE, // comment blocks
 
+      { // metadata
+        className: 'string',
+        begin: '^\\s*\\[', end: '\\]',
+      },
+
       { // interface or namespace declaration
-        beginKeywords: 'interface namespace', end: '{',
+        beginKeywords: 'interface namespace', end: /\{/,
         illegal: '[;.\\-]',
         contains: [
           { // interface or namespace name
@@ -73,7 +82,7 @@ function(hljs) {
       },
 
       { // class declaration
-        beginKeywords: 'class', end: '{',
+        beginKeywords: 'class', end: /\{/,
         illegal: '[;.\\-]',
         contains: [
           { // class name
@@ -104,7 +113,8 @@ function(hljs) {
 
       { // numbers
         className: 'number',
-        begin: '(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?f?|\\.\\d+f?)([eE][-+]?\\d+f?)?)'
+        relevance: 0,
+        begin: '(-?)(\\b0[xXbBoOdD][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?f?|\\.\\d+f?)([eE][-+]?\\d+f?)?)'
       }
     ]
   };

@@ -1,36 +1,48 @@
 /*
 Language: ReasonML
+Description: Reason lets you write simple, fast and quality type safe code while leveraging both the JavaScript & OCaml ecosystems.
+Website: https://reasonml.github.io
 Author: Gidi Meir Morris <oss@gidi.io>
 Category: functional
 */
-function(hljs) {
-  function orReValues(ops){
+export default function(hljs) {
+  function orReValues(ops) {
     return ops
-    .map(function(op) {
-      return op
-        .split('')
-        .map(function(char) {
-          return '\\' + char;
-        })
-        .join('');
-    })
-    .join('|');
+      .map(function(op) {
+        return op
+          .split('')
+          .map(function(char) {
+            return '\\' + char;
+          })
+          .join('');
+      })
+      .join('|');
   }
 
-  var RE_IDENT = '~?[a-z$_][0-9a-zA-Z$_]*';
-  var RE_MODULE_IDENT = '`?[A-Z$_][0-9a-zA-Z$_]*';
-  
-  var RE_PARAM_TYPEPARAM = '\'?[a-z$_][0-9a-z$_]*';
-  var RE_PARAM_TYPE = '\s*:\s*[a-z$_][0-9a-z$_]*(\(\s*(' + RE_PARAM_TYPEPARAM + '\s*(,' + RE_PARAM_TYPEPARAM + ')*)?\s*\))?';
-  var RE_PARAM = RE_IDENT + '(' + RE_PARAM_TYPE + ')?(' + RE_PARAM_TYPE + ')?';
-  var RE_OPERATOR = "(" + orReValues(['||', '&&', '++', '**', '+.', '*', '/', '*.', '/.', '...', '|>']) + "|==|===)";
-  var RE_OPERATOR_SPACED = "\\s+" + RE_OPERATOR + "\\s+";
+  const RE_IDENT = '~?[a-z$_][0-9a-zA-Z$_]*';
+  const RE_MODULE_IDENT = '`?[A-Z$_][0-9a-zA-Z$_]*';
 
-  var KEYWORDS = {
+  const RE_PARAM_TYPEPARAM = '\'?[a-z$_][0-9a-z$_]*';
+  const RE_PARAM_TYPE = '\\s*:\\s*[a-z$_][0-9a-z$_]*(\\(\\s*(' + RE_PARAM_TYPEPARAM + '\\s*(,' + RE_PARAM_TYPEPARAM + '\\s*)*)?\\))?';
+  const RE_PARAM = RE_IDENT + '(' + RE_PARAM_TYPE + '){0,2}';
+  const RE_OPERATOR = "(" + orReValues([
+    '||',
+    '++',
+    '**',
+    '+.',
+    '*',
+    '/',
+    '*.',
+    '/.',
+    '...'
+  ]) + "|\\|>|&&|==|===)";
+  const RE_OPERATOR_SPACED = "\\s+" + RE_OPERATOR + "\\s+";
+
+  const KEYWORDS = {
     keyword:
-      'and as asr assert begin class constraint do done downto else end exception external' +
-      'for fun function functor if in include inherit initializer' +
-      'land lazy let lor lsl lsr lxor match method mod module mutable new nonrec' +
+      'and as asr assert begin class constraint do done downto else end exception external ' +
+      'for fun function functor if in include inherit initializer ' +
+      'land lazy let lor lsl lsr lxor match method mod module mutable new nonrec ' +
       'object of open or private rec sig struct then to try type val virtual when while with',
     built_in:
       'array bool bytes char exn|5 float int int32 int64 list lazy_t|5 nativeint|5 ref string unit ',
@@ -44,14 +56,14 @@ function(hljs) {
     '[0-9][0-9_]*([Lln]|(\\.[0-9_]*)?([eE][-+]?[0-9_]+)?)?)';
 
   const NUMBER_MODE = {
-    className: 'number',    
+    className: 'number',
     relevance: 0,
     variants: [
       {
         begin: RE_NUMBER
       },
       {
-        begin: '\\(\\-' + RE_NUMBER + '\\)'
+        begin: '\\(-' + RE_NUMBER + '\\)'
       }
     ]
   };
@@ -76,7 +88,8 @@ function(hljs) {
     OPERATOR_MODE,
     {
       className: 'module',
-      begin: "\\b" + RE_MODULE_IDENT, returnBegin: true,
+      begin: "\\b" + RE_MODULE_IDENT,
+      returnBegin: true,
       end: "\.",
       contains: [
         {
@@ -91,7 +104,8 @@ function(hljs) {
   const PARAMS_CONTENTS = [
     {
       className: 'module',
-      begin: "\\b" + RE_MODULE_IDENT, returnBegin: true,
+      begin: "\\b" + RE_MODULE_IDENT,
+      returnBegin: true,
       end: "\.",
       relevance: 0,
       contains: [
@@ -142,7 +156,7 @@ function(hljs) {
                 begin: RE_PARAM
               },
               {
-                begin: /\(\s*\)/,
+                begin: /\(\s*\)/
               }
             ]
           }
@@ -157,9 +171,7 @@ function(hljs) {
           {
             className: 'params',
             relevance: 0,
-            variants: [
-              PARAMS_MODE
-            ]
+            variants: [ PARAMS_MODE ]
           }
         ]
       },
@@ -195,7 +207,7 @@ function(hljs) {
     relevance: 0,
     contains: [
       CONSTRUCTOR_MODE,
-      OPERATOR_MODE,    
+      OPERATOR_MODE,
       {
         relevance: 0,
         className: 'constructor',
@@ -226,21 +238,24 @@ function(hljs) {
         ].concat(MODULE_ACCESS_CONTENTS)
       },
       {
-        begin: "\\b(" + RE_MODULE_IDENT + "\\.)+{",
-        end: "}"
+        begin: "\\b(" + RE_MODULE_IDENT + "\\.)+\\{",
+        end: /\}/
       }
     ],
     contains: MODULE_ACCESS_CONTENTS
   };
 
   PARAMS_CONTENTS.push(MODULE_ACCESS_MODE);
-  
+
   return {
-    aliases: ['re'],
+    name: 'ReasonML',
+    aliases: [ 're' ],
     keywords: KEYWORDS,
-    illegal: '(:\\-|:=|\\${|\\+=)',
+    illegal: '(:-|:=|\\$\\{|\\+=)',
     contains: [
-      hljs.COMMENT('/\\*', '\\*/', { illegal: '^(\\#,\\/\\/)' }),
+      hljs.COMMENT('/\\*', '\\*/', {
+        illegal: '^(#,\\/\\/)'
+      }),
       {
         className: 'character',
         begin: '\'(\\\\[^\']+|[^\'])\'',
@@ -257,7 +272,7 @@ function(hljs) {
         className: 'literal',
         begin: '\\[\\|',
         end: '\\|\\]',
-        relevance:  0,
+        relevance: 0,
         contains: LIST_CONTENTS_MODES
       },
       {
@@ -271,7 +286,7 @@ function(hljs) {
       {
         className: 'operator',
         begin: RE_OPERATOR_SPACED,
-        illegal: '\\-\\->',
+        illegal: '-->',
         relevance: 0
       },
       NUMBER_MODE,
@@ -280,8 +295,8 @@ function(hljs) {
       FUNCTION_BLOCK_MODE,
       {
         className: 'module-def',
-        begin: "\\bmodule\\s+" + RE_IDENT + "\\s+" + RE_MODULE_IDENT + "\\s+=\\s+{",
-        end: "}",
+        begin: "\\bmodule\\s+" + RE_IDENT + "\\s+" + RE_MODULE_IDENT + "\\s+=\\s+\\{",
+        end: /\}/,
         returnBegin: true,
         keywords: KEYWORDS,
         relevance: 0,
@@ -292,8 +307,8 @@ function(hljs) {
             begin: RE_MODULE_IDENT
           },
           {
-            begin: '{',
-            end: '}',
+            begin: /\{/,
+            end: /\}/,
             skip: true
           }
         ].concat(MODULE_ACCESS_CONTENTS)
